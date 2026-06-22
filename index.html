@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -172,15 +172,19 @@
       font-size: 0.9rem;
     }
 
+    .en {
+      display: none;
+    }
+    
     .jp {
+      display: block;
+    }
+
+    body.show-en .jp {
       display: none;
     }
 
-    body.show-jp .en {
-      display: none;
-    }
-
-    body.show-jp .jp {
+    body.show-en .en {
       display: block;
     }
 
@@ -213,9 +217,9 @@
           <a href="#contact">Contact</a>
 
           <span class="language-toggle">
-            <button onclick="setLanguage('en')">EN</button>
-            /
             <button onclick="setLanguage('jp')">日本語</button>
+            /
+            <button onclick="setLanguage('en')">EN</button>
           </span>
         </div>
       </nav>
@@ -444,12 +448,12 @@
 
   <script>
     function setLanguage(language) {
-      if (language === "jp") {
-        document.body.classList.add("show-jp");
-        document.documentElement.lang = "ja";
-      } else {
-        document.body.classList.remove("show-jp");
+      if (language === "en") {
+        document.body.classList.add("show-en");
         document.documentElement.lang = "en";
+      } else {
+        document.body.classList.remove("show-en");
+        document.documentElement.lang = "ja";
       }
     }
   </script>

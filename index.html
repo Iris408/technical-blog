@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Ashleigh M. | Technical Blog</title>
+  <title>Ashleigh M. | 技術ブログ</title>
 
   <style>
     :root {
@@ -14,7 +14,6 @@
       --card: #ffffff;
       --border: #e5e7eb;
       --accent: #4f7f5f;
-      --accent-light: #e8f3ec;
     }
 
     * {
@@ -58,6 +57,7 @@
       display: flex;
       gap: 18px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .nav-links a,
@@ -68,6 +68,7 @@
       background: none;
       border: none;
       cursor: pointer;
+      padding: 0;
     }
 
     .nav-links a:hover,
@@ -86,21 +87,7 @@
       font-size: 1.1rem;
       color: var(--muted);
       max-width: 680px;
-      margin-bottom: 28px;
-    }
-
-    .tag-list {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      background: var(--accent-light);
-      color: var(--accent);
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 0.85rem;
+      margin-bottom: 0;
     }
 
     section {
@@ -122,6 +109,12 @@
       margin: 0 0 16px;
     }
 
+    code {
+      background: #f1f5f2;
+      padding: 2px 5px;
+      font-size: 0.9rem;
+    }
+
     .muted {
       color: var(--muted);
     }
@@ -129,9 +122,9 @@
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 18px;
+      border-radius: 0;
+      padding: 16px;
+      margin-bottom: 14px;
     }
 
     .log-meta {
@@ -147,8 +140,8 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
     }
 
     .contact-link {
@@ -157,8 +150,9 @@
       text-decoration: none;
       border: 1px solid var(--border);
       background: var(--card);
-      padding: 18px;
-      border-radius: 14px;
+      padding: 14px 16px;
+      border-radius: 0;
+      font-size: 0.95rem;
     }
 
     .contact-link:hover {
@@ -172,20 +166,24 @@
       font-size: 0.9rem;
     }
 
-    .en {
-      display: none;
-    }
-    
-    .jp {
-      display: block;
-    }
-
-    body.show-en .jp {
+    .lang-en {
       display: none;
     }
 
-    body.show-en .en {
+    body.show-en .lang-jp {
+      display: none;
+    }
+
+    body.show-en .lang-en {
+      display: inline;
+    }
+
+    body.show-en .lang-en-block {
       display: block;
+    }
+
+    .lang-en-block {
+      display: none;
     }
 
     @media (max-width: 640px) {
@@ -209,12 +207,23 @@
   <div class="page">
     <header>
       <nav>
-        <div class="logo">Ashleigh M</div>
+        <div class="logo">Ashleigh M.</div>
 
         <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#log">Technical Log</a>
-          <a href="#contact">Contact</a>
+          <a href="#about">
+            <span class="lang-jp">自己紹介</span>
+            <span class="lang-en">About</span>
+          </a>
+
+          <a href="#log">
+            <span class="lang-jp">技術ログ</span>
+            <span class="lang-en">Log</span>
+          </a>
+
+          <a href="#contact">
+            <span class="lang-jp">連絡先</span>
+            <span class="lang-en">Contact</span>
+          </a>
 
           <span class="language-toggle">
             <button onclick="setLanguage('jp')">日本語</button>
@@ -224,16 +233,7 @@
         </div>
       </nav>
 
-      <div class="en">
-        <h1>Technical blog for learning, building, and debugging.</h1>
-
-        <p class="intro">
-          I am a junior backend and full-stack developer in training, documenting my progress
-          through practical projects, debugging notes, and technical learning logs.
-        </p>
-      </div>
-
-      <div class="jp">
+      <div class="lang-jp">
         <h1>学習、開発、デバッグのための技術ブログ。</h1>
 
         <p class="intro">
@@ -242,33 +242,19 @@
         </p>
       </div>
 
-      <div class="tag-list">
-        <span class="tag">Python</span>
-        <span class="tag">FastAPI</span>
-        <span class="tag">React</span>
-        <span class="tag">Docker</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">Java</span>
+      <div class="lang-en-block">
+        <h1>Technical blog for learning, building, and debugging.</h1>
+
+        <p class="intro">
+          I am a junior backend and full-stack developer in training, documenting my progress
+          through practical projects, debugging notes, and technical learning logs.
+        </p>
       </div>
     </header>
 
     <main>
       <section id="about">
-        <div class="en">
-          <h2>About Me</h2>
-
-          <p>
-            I am building a practical software engineering portfolio focused on backend systems,
-            full-stack applications, APIs, automation tools, and deployment workflows.
-          </p>
-
-          <p>
-            This blog is where I record what I build, what goes wrong, how I fix problems,
-            and what each lesson teaches me as I continue developing as an engineer.
-          </p>
-        </div>
-
-        <div class="jp">
+        <div class="lang-jp">
           <h2>自己紹介</h2>
 
           <p>
@@ -282,10 +268,80 @@
             そして学んだことを記録していきます。
           </p>
         </div>
+
+        <div class="lang-en-block">
+          <h2>About Me</h2>
+
+          <p>
+            I am building a practical software engineering portfolio focused on backend systems,
+            full-stack applications, APIs, automation tools, and deployment workflows.
+          </p>
+
+          <p>
+            This blog is where I record what I build, what goes wrong, how I fix problems,
+            and what each lesson teaches me as I continue developing as an engineer.
+          </p>
+        </div>
       </section>
 
       <section id="log">
-        <div class="en">
+        <div class="lang-jp">
+          <h2>技術ログ</h2>
+
+          <p class="muted">
+            プロジェクトから学んだ短い記録です。各ログでは、問題、修正方法、
+            学んだことをまとめています。
+          </p>
+
+          <article class="card">
+            <div class="log-meta">バックエンド / テスト / Pytest</div>
+
+            <h3>pytest の import path を修正する</h3>
+
+            <p>
+              <span class="log-label">問題:</span>
+              <code>app/__init__.py</code> は存在していたのに、
+              pytest が <code>app</code> パッケージを見つけられませんでした。
+            </p>
+
+            <p>
+              <span class="log-label">修正:</span>
+              <code>pytest.ini</code> を追加し、<code>pythonpath = .</code> と
+              <code>testpaths = tests</code> を設定しました。
+            </p>
+
+            <p>
+              <span class="log-label">学んだこと:</span>
+              <code>__init__.py</code> はフォルダを Python パッケージとして扱えるようにします。
+              しかし、pytest がどこから探し始めるかは <code>pytest.ini</code> で指定します。
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="log-meta">フロントエンド / アクセシビリティ / UI</div>
+
+            <h3>アプリの表示設定を使いやすくする</h3>
+
+            <p>
+              <span class="log-label">問題:</span>
+              アクセシビリティ設定が深い設定ページにあると、ユーザーが見つけにくくなります。
+            </p>
+
+            <p>
+              <span class="log-label">修正:</span>
+              フォントサイズや読みやすいフォント設定など、重要な表示設定を
+              ヘッダーの小さなメニューに移動します。
+            </p>
+
+            <p>
+              <span class="log-label">学んだこと:</span>
+              アクセシビリティ設定は、プロフィール設定だけでなく、
+              公開ページやログイン後のページからも簡単に使えるべきです。
+            </p>
+          </article>
+        </div>
+
+        <div class="lang-en-block">
           <h2>Technical Log</h2>
 
           <p class="muted">
@@ -341,74 +397,10 @@
             </p>
           </article>
         </div>
-
-        <div class="jp">
-          <h2>技術ログ</h2>
-
-          <p class="muted">
-            プロジェクトから学んだ短い記録です。各ログでは、問題、修正方法、
-            学んだことをまとめています。
-          </p>
-
-          <article class="card">
-            <div class="log-meta">バックエンド / テスト / Pytest</div>
-
-            <h3>pytest の import path を修正する</h3>
-
-            <p>
-              <span class="log-label">問題:</span>
-              <code>app/__init__.py</code> は存在していたのに、
-              pytest が <code>app</code> パッケージを見つけられませんでした。
-            </p>
-
-            <p>
-              <span class="log-label">修正:</span>
-              <code>pytest.ini</code> を追加し、<code>pythonpath = .</code> と
-              <code>testpaths = tests</code> を設定しました。
-            </p>
-
-            <p>
-              <span class="log-label">学んだこと:</span>
-              <code>__init__.py</code> はフォルダを Python パッケージとして扱えるようにします。
-              しかし、pytest がどこから探し始めるかは <code>pytest.ini</code> で指定します。
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="log-meta">フロントエンド / アクセシビリティ / UI</div>
-
-            <h3>アプリの表示設定を使いやすくする</h3>
-
-            <p>
-              <span class="log-label">問題:</span>
-              アクセシビリティ設定が深い設定ページにあると、ユーザーが見つけにくくなります。
-            </p>
-
-            <p>
-              <span class="log-label">修正:</span>
-              フォントサイズや読みやすいフォント設定など、重要な表示設定を
-              ヘッダーの小さなメニューに移動します。
-            </p>
-
-            <p>
-              <span class="log-label">学んだこと:</span>
-              アクセシビリティ設定は、プロフィール設定だけでなく、
-              公開ページやログイン後のページからも簡単に使えるべきです。
-            </p>
-          </article>
-        </div>
       </section>
 
       <section id="contact">
-        <div class="en">
-          <h2>Contact</h2>
-
-          <p class="muted">
-            You can find my work, projects, and progress here.
-          </p>
-        </div>
-
-        <div class="jp">
+        <div class="lang-jp">
           <h2>連絡先</h2>
 
           <p class="muted">
@@ -416,32 +408,40 @@
           </p>
         </div>
 
+        <div class="lang-en-block">
+          <h2>Contact</h2>
+
+          <p class="muted">
+            You can find my work, projects, and progress here.
+          </p>
+        </div>
+
         <div class="contact-grid">
-          <a class="contact-link" href="https://github.com/Iris408" target="_blank">
-            GitHub<br />
-            <span class="muted">github.com/Iris408</span>
+          <a class="contact-link" href="github.com/Iris408" target="_blank">
+            <span class="lang-jp">GitHub を見る</span>
+            <span class="lang-en">View GitHub</span>
           </a>
 
-          <a class="contact-link" href="#" target="_blank">
-            LinkedIn<br />
-            <span class="muted">linkedin.com/in/ashleigh-magloire</span>
+          <a class="contact-link" href="linkedin.com/in/ashleigh-magloire" target="_blank">
+            <span class="lang-jp">LinkedIn を見る</span>
+            <span class="lang-en">View LinkedIn</span>
           </a>
 
           <a class="contact-link" href="mailto:ashmagloire45@icloud.com">
-            Email<br />
-            <span class="muted">Contact</span>
+            <span class="lang-jp">メールを送る</span>
+            <span class="lang-en">Contact via Email</span>
           </a>
         </div>
       </section>
     </main>
 
     <footer>
-      <div class="en">
-        © 2026 Ashleigh M. Built as a minimalist single-file technical blog.
+      <div class="lang-jp">
+        © 2026 マグロワールアシュリー | ミニマルな single-file 技術ブログとして作成。
       </div>
 
-      <div class="jp">
-        © 2026 マグロワールアシュリー. ミニマルな single-file 技術ブログとして作成。
+      <div class="lang-en-block">
+        © 2026 Ashleigh M. Built as a minimalist single-file technical blog.
       </div>
     </footer>
   </div>
@@ -451,9 +451,11 @@
       if (language === "en") {
         document.body.classList.add("show-en");
         document.documentElement.lang = "en";
+        document.title = "Ashleigh M. | Technical Blog";
       } else {
         document.body.classList.remove("show-en");
         document.documentElement.lang = "ja";
+        document.title = "マグロワールアシュリー | 技術ブログ";
       }
     }
   </script>

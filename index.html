@@ -345,6 +345,30 @@
               公開ページやログイン後のページからも簡単に使えるべきです。
             </p>
           </article>
+
+          <article class="card">
+            <div class="log-meta">バックエンド / デバッグ</div>
+
+            <h3>空のAlembicマイグレーションの修正</h3>
+
+            <p>
+              <span class="log-label">問題：</span>
+              Alembic がマイグレーションファイルを生成しましたが、以下が含まれていませんでした：
+              op.create_table(「tickets」, ...)
+            </p>
+
+            <p>
+              <span class="log-label">解決策：</span>
+              プロジェクトルートおよび Backend フォルダ内の正しいコマンドの場所を使用して、
+              マイグレーションファイルを再生成します。
+            </p>
+
+            <p>
+              <span class="log-label">教訓：</span>
+              Alembicは、SQLAlchemyのモデルを現在のデータベースの状態と比較します。
+              テーブルがすでに存在する場合、Alembicは空のマイグレーションを生成することがあります。
+            </p>
+          </article>
         </div>
 
         <div class="lang-en-block">

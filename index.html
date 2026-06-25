@@ -402,6 +402,31 @@
               not only from profile settings.
             </p>
           </article>
+          
+          <article class="card">
+            <div class="log-meta">Backend / Debugging</div>
+
+            <h3>Fixing an Empty Alembic Migration</h3>
+
+            <p>
+              <span class="log-label">Problem:</span>
+              Alembic created a migration file but this did not include:
+              op.create_table("tickets", ...)
+            </p>
+
+            <p>
+              <span class="log-label">Fix:</span>
+              Using the correct command locations in the Project Root and Backend folder
+              to regenerate the migration file.
+            </p>
+
+            <p>
+              <span class="log-label">Lesson:</span>
+              Alembic compares SQLAlchemy models against the current database state.
+              If the table already exists, Alembic may generate an empty migration.
+            </p>
+          </article>
+          
         </div>
       </section>
 

@@ -57,5 +57,4 @@ This project is a personal technical blog for recording development progress, de
 
 - Add more weekly technical log entries
 - Add filterable log categories
-- Add a dedicated Japanese translation view
 - Connect this blog to my main portfolio website

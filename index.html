@@ -285,7 +285,7 @@
           </p>
 
           <p>
-            This blog is where I record the real process, including what breaks, why and how fix I it.
+            This blog is where I record the real process, including what breaks, why, and how fix I it.
           </p>
         </div>
       </section>
@@ -298,6 +298,64 @@
             プロジェクトから学んだ短い記録です。各ログでは、問題、修正方法、
             学んだことをまとめています。
           </p>
+
+          <article class="card">
+            <div class="log-meta">認証 / デバッグ / FastAPI</div>
+
+            <h3>JWT Dashboard の管理者アクセスを修正する</h3>
+
+            <p>
+              <span class="log-label">問題:</span>
+              JWT Authentication Dashboard ではログインはできましたが、
+              管理者ページからユーザー一覧を取得できませんでした。
+              ブラウザでは CORS エラー、接続エラー、500 Internal Server Error が表示されました。
+            </p>
+
+            <p>
+              <span class="log-label">原因:</span>
+              FastAPI バックエンドの CORS 設定に、ローカル開発用の
+              <code>http://localhost:5175</code> が含まれていませんでした。
+              さらに、管理者チェックでは <code>current_user.role</code> を使っていましたが、
+              実際の <code>current_user</code> は辞書型でした。
+            </p>
+
+            <p>
+              <span class="log-label">修正:</span>
+              CORS の許可リストにローカルフロントエンドのURLを追加し、
+              管理者ロールの確認を <code>current_user.get("role")</code> に変更しました。
+            </p>
+
+            <p>
+              <span class="log-label">学んだこと:</span>
+              フロントエンドに表示されるエラーでも、原因がバックエンドにある場合があります。
+              CORS、認証、認可、デプロイログを順番に確認することが重要だと学びました。
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="log-meta">ポートフォリオ / フロントエンド / プロジェクト整理</div>
+
+            <h3>ポートフォリオの注目プロジェクトを更新する</h3>
+
+            <p>
+              <span class="log-label">問題:</span>
+              ポートフォリオの注目プロジェクトが、現在のスキルや最新の作業内容を                
+              十分に反映していませんでした。
+            </p>
+
+            <p>
+              <span class="log-label">修正:</span>
+                ホームページの注目プロジェクトを4つに増やし、
+                Inventory Management System、Bloom、Mini User API、
+                JWT Authentication Dashboard を中心に表示するようにしました。
+            </p>
+
+            <p>
+              <span class="log-label">学んだこと:</span>
+                ポートフォリオはプロジェクト一覧ではなく、
+              「それぞれのプロジェクトで何を証明できるか」を伝える場所です。
+            </p>
+          </article>
 
           <article class="card">
             <div class="log-meta">バックエンド / テスト / Pytest</div>
@@ -378,6 +436,66 @@
             Short notes from my projects. Each entry explains the problem, the fix,
             and the lesson learned.
           </p>
+
+          <article class="card">
+            <div class="log-meta">Authentication / Debugging / FastAPI</div>
+
+            <h3>Fixing JWT Dashboard Admin Access</h3>
+
+            <p>
+              <span class="log-label">Problem:</span>
+              The JWT Authentication Dashboard login flow worked, but the Admin page
+              could not load users from the deployed Mini User API backend.
+              The browser showed CORS errors, connection errors, and a 500 Internal Server Error.
+            </p>
+
+            <p>
+              <span class="log-label">Cause:</span>
+              The deployed FastAPI backend did not allow the local frontend origin
+              <code>http://localhost:5175</code>. The admin route also tried to use
+              <code>current_user.role</code>, but <code>current_user</code> was actually                
+              a dictionary returned from the auth dependency.
+            </p>
+
+            <p>
+              <span class="log-label">Fix:</span>
+              I added the local frontend origin to the backend CORS allow list and changed
+              the admin role check to use <code>current_user.get("role")</code>.
+              </p>
+
+              <p>
+                <span class="log-label">Lesson:</span>
+                A frontend error is not always a frontend problem. In this case, the visible
+                error appeared in React, but the real causes were backend CORS configuration,
+                deployed API behaviour, and role-checking logic.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="log-meta">Portfolio / Frontend / Project Presentation</div>
+
+              <h3>Updating Portfolio Featured Projects</h3>
+
+              <p>
+                <span class="log-label">Problem:</span>
+                The portfolio homepage did not fully reflect my strongest and most current
+                projects after recent updates to the JWT Authentication Dashboard and backend API.
+              </p>
+
+              <p>
+                <span class="log-label">Fix:</span>
+                I updated the featured project data, changed the homepage from three featured
+                projects to four, refreshed the tags, and added new screenshots for the JWT
+                Authentication Dashboard.
+              </p>
+
+              <p>
+                <span class="log-label">Lesson:</span>
+                A portfolio should not only list projects. It should clearly show what each
+                project proves, such as authentication, backend API design, deployment,
+                CI/CD, accessibility, or full-stack integration.
+              </p>
+          </article>
 
           <article class="card">
             <div class="log-meta">Backend / Testing / Pytest</div>

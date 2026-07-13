@@ -428,6 +428,34 @@
               テーブルがすでに存在する場合、Alembicは空のマイグレーションを生成することがあります。
             </p>
           </article>
+
+          <article class="card">
+            <div class="log-meta">2026-07 · フルスタック / React / FastAPI</div>
+
+            <h3>Bloomのルーティン同期問題を修正</h3>
+
+            <p>
+              <span class="log-label">問題：</span>
+                ログインユーザーがRoutinesページで作成したルーティンが、
+                HomeページやProgressページに表示されず、再読み込み後も正しく保存されていませんでした。
+                バックエンドAPIはすでに存在していましたが、複数のルーティン機能が動作していないように見える状態でした。
+            </p>
+
+            <p>
+              <span class="log-label">修正：</span>
+                フロントエンドのデータフローを調査し、Routines.jsxがバックエンドのCRUD関数を
+                インポートしているにもかかわらず、実際には呼び出していないことを確認しました。
+                認証済みユーザー向けのバックエンド永続化、ページ間同期イベント、
+                ローディング表示、エラー表示、Homeページの自動再読み込みを実装しました。
+            </p>
+
+            <p>
+              <span class="log-label">学び：</span>
+                複数の不具合が、実際には1つの根本原因から発生している場合があります。
+                個別の症状だけを修正するのではなく、UIからAPI、データベースまで
+                データの流れ全体を追跡することが重要だと学びました。
+            </p>
+          </article>
         </div>
 
         <div class="lang-en-block">
@@ -567,6 +595,34 @@
               <span class="log-label">Lesson:</span>
               Alembic compares SQLAlchemy models against the current database state.
               If the table already exists, Alembic may generate an empty migration.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="log-meta">2026-07 · Full-Stack / React / FastAPI</div>
+
+            <h3>Fixing Bloom Routine Synchronisation</h3>
+
+            <p>
+              <span class="log-label">Problem:</span>
+                Routines created by logged-in users appeared on the Routines page but did not
+                appear on Home, Progress, or after refresh. Several routine-related features
+                seemed broken despite the backend APIs already existing.
+            </p>
+
+            <p>
+              <span class="log-label">Fix:</span>
+                Investigated the frontend data flow and discovered that Routines.jsx never
+                called the backend CRUD functions. Added authenticated backend persistence,
+                routine synchronisation events, loading states, and automatic Home page
+                refreshes after routine changes.
+            </p>
+
+            <p>
+              <span class="log-label">Lesson:</span>
+                Multiple bugs can often share a single root cause. Following data from the
+                UI through the API and database is often more effective than fixing symptoms
+                individually.
             </p>
           </article>
           
